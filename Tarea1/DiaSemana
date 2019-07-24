@@ -1,0 +1,144 @@
+import java.util.Scanner;
+
+/**
+ *
+ * @author hbmg98
+ */
+public class Tarea1_EDD {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        //Declaramos las entradas que usaremos
+        Scanner e1 = new Scanner(System.in); 
+        Scanner e2 = new Scanner(System.in); 
+        Scanner e3 = new Scanner(System.in);
+        
+        // Declaramos las variables que usaremos
+        int dia, mes, año;
+        // Declaramos los coeficientes auxiliares
+        int a,b,c,d,e, Resultado;
+        
+        //Se solicitan los datos y los guardamos en la variable que corresponde
+        System.out.println("Ingrese la fecha a analizar (numeros enteros)");
+        System.out.println("Ingrese el día: (Entre 1 - 31) ");
+        dia = e1.nextInt();               
+        System.out.println("Ingrese el mes (Entre 1 - 12): ");
+        mes = e2.nextInt();
+        System.out.println("Ingrese el año (Entre 1700 - 2299): ");
+        año = e3.nextInt();
+        
+
+        // El coeficiente a nos da el siglo en que estamos
+        // asignamos los valores segun la tabla del algoritmo doomsday
+        if (año >= 1700 && año <= 1799) 
+        {
+            a = 5;
+        }
+        else if (año >= 1800 && año <= 1899) 
+        {
+            a = 3;
+        }
+        else if (año >= 1900 && año <= 1999) 
+        {
+            a = 1;
+        }
+        else if (año >= 2000 && año <= 2099) 
+        {
+            a = 0;
+        }
+        else if (año >= 2100 && año <= 2199) 
+        {
+            a = -2;
+        }
+        else if (año >= 2200 && año <= 2299) 
+        {
+            a = -4;
+        }
+        else
+        {
+            a= 0;
+        }
+
+        //Extraemos los ultimos dos digitos del año que se ingreso
+        String num = Integer.toString(año);
+        char [] num2 = num.toCharArray();
+        String UDosDigitos = String.valueOf(num2[2])+String.valueOf(num2[3]);
+        int U2Digitos = Integer.parseInt(UDosDigitos);
+
+        // Asignamos el valor al coeficiente b que es de año
+        b = U2Digitos + (U2Digitos /4);
+
+        //Calculos para años bisiestos
+        // Debe ser multiplo de 4 o 0
+       // asignamos el valor al coeficiente c que es el año bisiesto
+        if (U2Digitos %4 == 0 && U2Digitos != 00) 
+        {
+            if (mes == 1 || mes == 01 || mes == 2 || mes == 02) 
+            {
+                c = -1;
+            }
+            else 
+            {
+                c= 0;
+            }
+        }
+        else 
+        {
+            c = 0;
+        }
+
+
+        //El coeficiente d es el mes, asignamos el valor segun la tabla
+        switch(mes)
+        {
+            case 1: d = 6; break;
+            case 2: d = 2; break;
+            case 3: d = 2; break;
+            case 4: d = 5; break;
+            case 5: d = 0; break;
+            case 6: d = 3; break;
+            case 7: d = 5; break;
+            case 8: d = 1; break;
+            case 9: d = 4; break;
+            case 10: d = 6; break;
+            case 11: d= 2; break;
+            case 12: d = 4; break;
+            default: d = 0; break;
+        }
+
+        //El coeficiente e es el dia de la fecha
+        e = dia;
+
+        //algoritmo final, se suman los coeficientes
+        int Resultado1 = a+b+c+d+e;
+
+        // Restamos 7 al resultado si es mayor a 7 para que el numero sea entre 0 y 6
+        Resultado = Resultado1 -7;
+        while(Resultado>7)
+        {
+            Resultado=Resultado-7;
+        }
+        //Asignamos el dia de la semana correspondiente segun la tabla
+        String DiaSemana;
+        switch(Resultado)
+        {
+            case 0: DiaSemana = "Domingo"; break;
+            case 1: DiaSemana = "Lunes"; break;
+            case 2: DiaSemana = "Martes"; break;
+            case 3: DiaSemana = "Miercoles"; break;
+            case 4: DiaSemana = "Jueves"; break;
+            case 5: DiaSemana = "Viernes"; break;
+            case 6: DiaSemana = "Sabado"; break;
+            default: DiaSemana = "Domingo"; break;
+
+        }
+
+        //Se muestra el dia de la semana de la fecha
+        System.out.println("Dia de la semana de la fecha es: "+DiaSemana);
+
+    }
+
+       
+    }

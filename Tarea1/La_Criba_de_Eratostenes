@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ *
+ * @author hbmg98
+ */
+public class Tarea1_EDD {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // Inicializamos la entrada del numero a analizar
+        Scanner e = new Scanner(System.in);
+
+        System.out.println("La criba de Eratóstenes  ");
+        System.out.println("Numeros Primos menores que N  ");
+        System.out.println("Ingresa un numero natural (N)");
+        int num= e.nextInt();
+
+        //Marca todos los numeros compuestos hasta llegar al numero y toma los demas como primos
+        int PMax = (int)((Math.floor(Math.sqrt(num)))+1);
+
+        //Lista para guardar los numeros compuestos
+        List<Long> num_compuestos = new ArrayList<>();
+
+        //Recorremos la lista desde el 2 hasta el numero primo maximo
+        for (int i = 2; i <= PMax; i++)
+        {
+            //Para los numeros no compuestos y no marcados 
+            if (!num_compuestos.contains(Long.valueOf(i))) 
+            {
+                //Se recorren todos los multiplos del numero
+                for (int j = i; j < num/i + 1; j++) 
+                {
+                    // Se marcan los numeros y se guardan en la lista de compuestos
+                    num_compuestos.add(Long.valueOf(i*j));                    
+                }                
+            }            
+        }
+
+        System.out.println("Los numeros primos menores de "+num+" Son :");
+
+        //Mostramos la lista de numeros enteros.. (naturales)
+        // k es la posicion que lleva el numero
+        for (int k = 2; k < num; k++) 
+        {
+            if (!num_compuestos.contains(Long.valueOf(k)))
+            {
+                System.out.print(" "+k+" ");
+            }            
+        }
+
+
+       
+    }}

@@ -116,6 +116,11 @@ public class Bolsa {
             System.out.println("( "+temporal.x+","+temporal.y+" ) ");
             temporal = temporal.Siguiente;
             } 
+            // termino la lista pero esta enlazada al primer elemento
+            // imprimimos el siguiente elemento, como es lista circular, sera el primer elemento de la lista
+            System.out.println(" El siguiente elemento, es el primero de la lista");
+            System.out.print("( "+temporal.x+","+temporal.y+" )");
+            
         }
       }
 }
